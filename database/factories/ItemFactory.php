@@ -17,10 +17,13 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
+
+
+        $items = ['Cerdo', 'Jamon de Cerdo', 'Brocoli', 'Papas', 'Tomates', 'Coca-cola', 'Horchata', 'Agua',];
         return [
-            "name"=>fake()->streetName(),
-            "note"=>fake()->text(),
-            "category_id"=> Category::all()->random()->id 
+            "name" => $this->faker->unique()->randomElement($items),
+            "note" => fake()->text(),
+            "category_id" => Category::all()->random()->id
         ];
     }
 }

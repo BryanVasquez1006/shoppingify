@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Listname;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -12,7 +14,10 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view("main");
+        $listnames = Listname::all();
+        // return $listnames[0]->items;
+        $categories = Category::all();
+        return view("main", compact("listnames", "categories"));
     }
 
     /**

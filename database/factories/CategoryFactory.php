@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
         $names = ['Fruits and vegetables', 'Meat and fish', 'Beverages'];
 
         return [
-            "name" => $this->faker->randomElement($names),
+            "name" => $this->faker->unique()->randomElement($names)
         ];
     }
 
