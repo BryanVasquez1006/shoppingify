@@ -34,8 +34,8 @@
                           <div class="grid grid-cols-4 gap-3">
                               @foreach ($categoryItems as $item)
                                   <div
-                                      class="bg-white rounded-lg shadow-md flex justify-between w-40 cursor-pointer p-3">
-                                      <button wire:click="showDetails({{ $item->id }})"
+                                      class="showInfo bg-white rounded-lg shadow-md flex justify-between w-40 cursor-pointer p-3">
+                                      <button wire:click="showDetails"
                                           class="flex-grow-1 h-auto">{{ $item->name }}</button>
                                       <button wire:click="showCategr({{ $item->id }})"
                                           class="text-gray-500 dark:text-gray-400">
@@ -52,4 +52,11 @@
           </div>
       </div>
   </div>
+
+  <div>
+    @if ($showDetails)
+        @livewire('show-details')
+    @endif
+</div>
+  
   {{-- MIDDLE SECTION ENDING HERE --}}

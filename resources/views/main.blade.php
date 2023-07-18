@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="flex items-center pl-5" onclick="toggleHover(this)">
-                        <a href="#">
+                        <a href="{{ route("history.index") }}">
                             <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960"
                                 width="35">
                                 <path
@@ -63,53 +63,100 @@
             </div>
         </aside>
 
-      
 
 
+        {{-- MIDDLE SECTION HERE --}}
         @livewire('item-filter')
+        {{-- MIDDLE SECTION HERE --}}
+
+
+
+
 
 
         {{-- RIGHT SECTION STARTING HERE --}}
 
-
+        
         <div class="flex flex-col justify-between">
             <!-- Modal -->
+            
             <div id="myModal" class="hidden fixed inset-0 flex items-center justify-end z-50 modal">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-modal-w h-full flex flex-col justify-evenly">
                     <h2 class="text-xl font-bold mb-4">Add a new item</h2>
                     <div class="modal_content ">
                         <div class="form-container">
-                            <form action="" class="flex flex-col justify-evenly">
+                            <form action="" method="POST" class="flex flex-col justify-evenly">
+                                @csrf
                                 <label class="m " for="name">Name</label><br>
-                                <input type="text" placeholder="Enter a name"
+                                <input type="text" placeholder="Enter a name" name="name"
                                     class="p-3  focus:outline-orange-400 border-2 rounded-xl mt-3 mb-5  min-w-full">
 
                                 <label class="m " for="notes">Note (optional)</label><br>
                                 <textarea type="textarea" placeholder="Enter a note"
-                                    class="p-5 focus:outline-orange-400 border-2 rounded-xl mb-5 min-w-full"></textarea>
+                                    class="p-5 focus:outline-orange-400 border-2 rounded-xl mb-5 min-w-full" name="note"></textarea>
 
 
                                 <label class="m " for="image">Image (optional)</label><br>
-                                <input type="text" placeholder="Enter an image"
+                                <input type="text" placeholder="Enter an image" name="image"
                                     class="p-3 focus:outline-orange-400 border-2 rounded-xl mb-5 min-w-full">
 
+                                <div class="col-span-full">
+                                    <div class="sm:col-span-4">
+                                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                                        <div class="mt-2">
+                                            <select name=category id="categories">
+                                                <option value="null" selected disabled> Select a category </option>
+                                                @foreach ($categories  as $category )
+                                                 
+                                                <option  value="{{$category->id}}"id="email" name="category" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{$category->name}}</option>
+                                                @endforeach
+                                        </select>
+                                        </div>
+                                      </div>
+                                  </div>
+                                {{-- <div class="relative inline-block text-left">
+                                    <div>
+                                        <button type="button"
+                                            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                            Category
+                                            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                                                fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </div>
 
-                                <label class="m " for="categ">Category</label><br>
-                                <input type="text" placeholder="Enter a category"
-                                    class="p-3 focus:outline-orange-400 border-2 rounded-xl mb-5 min-w-full">
-                            </form>
+
+                                    <div class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button"
+                                        tabindex="-1" id="">
+                                        <div class="py-1" role="none">
+                                            @foreach ($categories as $category)
+                                                <a href=""
+                                                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-orange-400 hover:text-white"
+                                                    role="menuitem" tabindex="-1" id="menu-item-0"
+                                                    data-category-id="{{ $category->id }}">{{ $category->name }}</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="form_btns flex justify-evenly items-center content-center">
-                        <button id="closeModal"
+                        <div class="form_btns flex justify-evenly items-center content-center">
+                            <button id="closeModal"
                             class="mt-4 rounded-xl bg-gray-500 hover:bg-gray-700 text-white font-bold p-5 rounded">
                             Cancel
                         </button>
-
+                        
                         <button id="closeModal"
-                            class="mt-4 rounded-xl bg-orange-400 hover:bg-orange-600 text-white font-bold p-5 rounded">
-                            Save
-                        </button>
+                        class="mt-4 rounded-xl bg-orange-400 hover:bg-orange-600 text-white font-bold p-5 rounded" type="submit">
+                        Save
+                    </button>
+                </form>
                     </div>
 
                 </div>
@@ -174,8 +221,30 @@
             </div>
         </div>
     </div>
-    {{-- RIGHT SECTION ENDING HERE --}}
 
+   
+    
+
+
+
+
+
+
+
+
+    
+    {{-- RIGHT SECTION ENDING HERE --}}
+    <script>
+        // Obtén el botón del menú y el menú desplegable
+        var menuButton = document.getElementById('menu-button');
+        var menu = document.querySelector('.absolute.right-0');
+
+        // Agrega un evento de clic al botón del menú
+        menuButton.addEventListener('click', function() {
+            // Alternar la clase "hidden" para mostrar u ocultar el menú desplegable
+            menu.classList.toggle('hidden');
+        });
+    </script>
 
     <script>
         function toggleHover(element) {
@@ -188,6 +257,8 @@
             element.classList.add('border-l-4', 'border-yellow-500');
         }
     </script>
+
+    {{-- RIGHT SIDE MODAL --}}
     <script>
         document.getElementById('openModal').addEventListener('click', function() {
             document.getElementById('myModal').classList.remove('hidden');
@@ -197,6 +268,44 @@
             document.getElementById('myModal').classList.add('hidden');
         });
     </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuButton = document.getElementById('menu-button');
+            var menuDropdown = document.getElementById('menu-dropdown');
+            var categoryItems = document.querySelectorAll('[data-category-id]');
+
+            // Abrir/cerrar el dropdown al hacer clic en el botón
+            menuButton.addEventListener('click', function() {
+                menuDropdown.classList.toggle('hidden');
+            });
+
+            // Seleccionar una categoría al hacer clic en ella
+            categoryItems.forEach(function(item) {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var categoryId = this.getAttribute('data-category-id');
+
+                    // Asignar el ID de la categoría seleccionada al campo oculto
+                    document.getElementById('category-id').value = categoryId;
+
+                    // Actualizar el texto del botón con el nombre de la categoría seleccionada
+                    document.getElementById('menu-button').innerText = this.innerText;
+
+                    // Cerrar el dropdown después de seleccionar una categoría
+                    menuDropdown.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
     @livewireScripts
 </body>
 

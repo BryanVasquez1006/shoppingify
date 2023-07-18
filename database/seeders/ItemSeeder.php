@@ -19,7 +19,6 @@ class ItemSeeder extends Seeder
         // Item::factory(8)->create();
         // ItemListname::factory(20)->create();
         // Listname::factory(20)->create();
-
         $itemsCat1 = ['Brocoli', 'Papas', 'Tomates'];
         $itemsCat2 = ['Cerdo', 'Jamon de Cerdo'];
         $itemsCat3 = ['Coca-cola', 'Horchata', 'Agua',];

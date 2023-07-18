@@ -6,9 +6,20 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\Listname;
 use Livewire\Component;
+use Livewire\ShowDetails;
 
 class ItemFilter extends Component
 {
+    public $showDetails = false;
+    public $itemId;
+   
+    public function showDetails()
+    {
+        
+        $this->showDetails = true;
+        $this->emit('showDetails', $this->itemId);
+    }
+
     public $search;
     public function render()
     {
