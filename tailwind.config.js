@@ -4,10 +4,17 @@ module.exports = {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+   
     
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        'modal-w': "430px",
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+ 
+  ],
 }

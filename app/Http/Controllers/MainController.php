@@ -17,7 +17,9 @@ class MainController extends Controller
         $listnames = Listname::all();
         // return $listnames[0]->items;
         $categories = Category::all();
-        return view("main", compact("listnames", "categories"));
+
+        $showHiddenView = false;
+        return view("main", compact("listnames", "categories", "showHiddenView"));
     }
 
     /**

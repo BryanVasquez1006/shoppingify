@@ -68,4 +68,14 @@ class ItemsController extends Controller
     {
         //
     }
+
+
+
+    public function toggleHiddenView()
+{
+    $showHiddenView = !session('showHiddenView', false);
+    session(['showHiddenView' => $showHiddenView]);
+
+    return redirect()->back();
+}
 }

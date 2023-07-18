@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('items', ItemsController::class)->names('items');
 Route::resource('main', MainController::class)->names('main');
+Route::post('/toggle-hidden-view', 'HiddenViewController@toggleHiddenView')->name('toggleHiddenView');
 
 
 Route::get('/', function () {
