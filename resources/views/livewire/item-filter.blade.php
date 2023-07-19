@@ -33,6 +33,7 @@
                           <div class="mb-3 mt-8 font-bold">{{ $category->name }}</div>
                           <div class="grid grid-cols-4 gap-3">
                               @foreach ($categoryItems as $item)
+                            
                                   <div
                                       class="showInfo bg-white rounded-lg shadow-md flex justify-between w-40 cursor-pointer p-3">
                                       <button wire:click="showDetails"

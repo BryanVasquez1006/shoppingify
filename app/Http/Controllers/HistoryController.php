@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\ItemListname;
+use App\Models\Listname;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -12,7 +15,16 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        return view("history");
+
+        $item_listnames = ItemListname::all() ;
+        $listnames = Listname::all();
+        // return $listnames[0]->items;
+        $categories = Category::all();
+
+        $showHiddenView = false;
+
+        return view("history", compact("listnames", "categories", "showHiddenView", "item_listnames"));
+       
     }
 
     /**

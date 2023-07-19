@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       width: {
         'modal-w': "430px",
+        'list-modal-w': "1425px"
       }
     },
   },
